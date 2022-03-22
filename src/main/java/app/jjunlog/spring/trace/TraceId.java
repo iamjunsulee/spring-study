@@ -25,7 +25,7 @@ public class TraceId {
     }
 
     // depth에 따라 id는 똑같고, 레벨은 증가해야하니까
-    private TraceId createNextTraceId() {
+    public TraceId createNextTraceId() {
         return new TraceId(id, level + 1);
     }
 
