@@ -14,7 +14,8 @@ public class OrderControllerV2 {
 
     @GetMapping("/v2/request")
     public String request(String itemId) {
-        //TO_DO : ID 동기화(현재는 begin 메소드가 호출될 때마다 생성중), 레벨 표시
+        //TraceId를 동기화하기 위해 파라미터를 사용했는데,
+        //이는 관련 메소드의 모든 파라미터를 다 수정해야하는 문제를 발생시킨다.
         TraceStatus status = null;
         try {
             status = logger.begin("OrderControllerV2.request()");

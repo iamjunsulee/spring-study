@@ -29,7 +29,7 @@ public class TraceId {
         return new TraceId(id, level + 1);
     }
 
-    private TraceId createPreviousTraceId() {
+    public TraceId createPreviousTraceId() {
         return new TraceId(id, level - 1);
     }
 
