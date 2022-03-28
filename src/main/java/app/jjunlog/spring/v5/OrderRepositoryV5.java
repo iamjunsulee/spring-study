@@ -3,18 +3,19 @@ package app.jjunlog.spring.v5;
 import app.jjunlog.spring.trace.logtrace.LogTrace;
 import app.jjunlog.spring.trace.strategy.LogContext;
 import app.jjunlog.spring.trace.strategy.Strategy;
-import app.jjunlog.spring.trace.templatemethod.AbstractTemplate;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
 public class OrderRepositoryV5 {
-    private final LogTrace logTrace;
+    private final LogContext logContext;
+
+    public OrderRepositoryV5(LogTrace logTrace) {
+        this.logContext = new LogContext(logTrace);
+    }
 
     //저장 로직
     public void save(String itemId) {
-        LogContext<Void> context = new LogContext<Void>(new Strategy<Void>() {
+        logContext.execute("OrderRepositoryV5.save()", new Strategy<Void>() {
             @Override
             public Void call() {
                 if (itemId.equals("ex")) {
@@ -23,8 +24,7 @@ public class OrderRepositoryV5 {
                 sleep(1000);
                 return null;
             }
-        }, logTrace);
-        context.execute("OrderRepositoryV4.save()");
+        });
     }
 
     private void sleep(int millis) {

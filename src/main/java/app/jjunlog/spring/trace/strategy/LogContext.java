@@ -3,16 +3,14 @@ package app.jjunlog.spring.trace.strategy;
 import app.jjunlog.spring.trace.TraceStatus;
 import app.jjunlog.spring.trace.logtrace.LogTrace;
 
-public class LogContext<T> {
-    private final Strategy<T> strategy;
+public class LogContext {
     private final LogTrace logTrace;
 
-    public LogContext(Strategy<T> strategy, LogTrace logTrace) {
-        this.strategy = strategy;
+    public LogContext(LogTrace logTrace) {
         this.logTrace = logTrace;
     }
 
-    public T execute(String message) {
+    public <T> T execute(String message, Strategy<T> strategy) {
         TraceStatus status = null;
         try {
             status = logTrace.begin(message);
