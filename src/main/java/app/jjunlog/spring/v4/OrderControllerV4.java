@@ -17,7 +17,7 @@ public class OrderControllerV4 {
         /*
          * template method pattern 사용
          * 익명 내부 클래스를 사용해서 자식 클래스는 따로 작성안함.
-         * 상송을 이용하다보니 상속의 단점은 그대로 있음 => 부모 클래스를 수정하면 자식 클래스에 다 영향을 미침.
+         * 상속을 이용하다보니 상속의 단점은 그대로 있음 => 부모 클래스를 수정하면 자식 클래스에 다 영향을 미침.
          */
         AbstractTemplate<String> template = new AbstractTemplate<String>(logTrace) {
             @Override
